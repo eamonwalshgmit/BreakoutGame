@@ -28,6 +28,8 @@ var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
+var score = 0;
+
 //Hold the bricks in a two-dimensional array - think of it as columns and rows
 var bricks = [];
 for(c=0; c<brickColumnCount; c++) {
@@ -152,6 +154,12 @@ function collisionDetection() {
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy;
                     b.status = 0;
+					score++;
+                    document.getElementById("gamescore").innerHTML = "Score: " + score;
+                    if(score == brickRowCount*brickColumnCount) {
+                        alert("YOU WIN, CONGRATULATIONS!");
+                        document.location.reload();
+                    }					
                 }
             }
         }
