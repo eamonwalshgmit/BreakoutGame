@@ -1,3 +1,13 @@
+/*
+
+Javascript Breakout Game version 1.2
+
+Eamon Walsh
+
+March 2018
+
+*/
+
 //Setup some variables for the canvas
 var canvas = document.getElementById("myCanvas");
 
@@ -32,6 +42,7 @@ var score = 0;
 
 //Hold the bricks in a two-dimensional array - think of it as columns and rows
 var bricks = [];
+
 for(c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
     for(r=0; r<brickRowCount; r++) {
@@ -80,16 +91,17 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     //draw the ball
-    drawBall();
+	drawBall();
     
     //draw the paddle
     drawPaddle();
     
-    //detect collissions
-    collisionDetection();
-    
     //draw the bricks
     drawBricks();
+
+	//detect collissions
+    collisionDetection();
+    
     
     //Redraw the paddle when the right or left arrows are pressed
     if(rightPressed && paddleX < canvas.width-paddleWidth) {
@@ -100,18 +112,15 @@ function draw() {
     }
     
     //Bounce the ball off three walls - if it drops off the bottom - Game Over!
-    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-        dx = -dx;
-    }
-    if(y + dy < ballRadius) {
-        dy = -dy;
-    } else if(y + dy > canvas.height-ballRadius) {
-        if(x > paddleX && x < paddleX + paddleWidth) {
-            dy = -dy;
-            
-            /*Make the ball go faster when you hit the paddle
-            dx += 2;
-            dy -= 2; ***/
+	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+		dx = -dx;
+	}
+	if(y + dy < ballRadius) {
+		dy = -dy;
+	} else if(y + dy > canvas.height-ballRadius) {
+	if(x > paddleX && x < paddleX + paddleWidth) {
+	dy = -dy;
+		
         }
         else {
             alert("GAME OVER");
